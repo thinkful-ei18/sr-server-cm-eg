@@ -9,3 +9,5 @@ module.exports = {
             process.env.TEST_DATABASE_URL ||
             'mongodb://localhost/thinkful-backend-test'
 };
+
+console.log(process.env.DATABASE_URL);

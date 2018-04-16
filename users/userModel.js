@@ -1,7 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const LinkedList = require('../linkedList/linkedlist');
 
 const userSchema = mongoose.Schema({
@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema({
   password: { type: String, required: true },
   firstName: { type: String, default: '' },
   lastName: { type: String, default: '' },
-  questions: [{ type: LinkedList }]
+  questions: [{ type: Object }]
 });
 
 userSchema.set('toObject', {
