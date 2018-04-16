@@ -1,7 +1,6 @@
 'use strict';
-
+//================================== Require/ Set up Dependencies ====================>
 require('dotenv').config();
-
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -9,8 +8,10 @@ const userRouter = require('./users/userRouter');
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
 const jwtAuth = require('./auth/authenticate');
-
 const app = express();
+
+
+//================================== Logger Middleware ====================>
 
 app.use(
   morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {
@@ -18,23 +19,35 @@ app.use(
   })
 );
 
+
+//================================== Set up CORS config ==================>
+
 app.use(
   cors({
     origin: CLIENT_ORIGIN
   })
 );
 
+//================================== Set up JSON parsing ====================>
+app.use(express.json());
 
 
+//================================== Route Handlers ===================>
 app.use('/api', userRouter);
 
+
+
+//================================== Error Handler ====================>
 
 app.use((err,req,res,next) => {
   err.status = err.status || 500;
   err.message = err.message || 'Internal Server Error';
+  console.log(err);
   res.json(err);
 });
 
+
+//================================== Run Server ====================>
 
 function runServer(port = PORT) {
   const server = app
