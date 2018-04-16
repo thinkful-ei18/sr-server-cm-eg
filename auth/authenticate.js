@@ -1,8 +1,6 @@
 'use strict';
 //================================== Dependencies ============================>
 const jwt = require('jsonwebtoken');
-const express = require('express');
-const app = express();
 const {JWT_SECRET} = require('../config');
 
 //================================== Authentication Middleware ============================>
@@ -22,8 +20,9 @@ const authenticate = (req,res,next) => {
     // Now, we extract the token from the header and verify it with the JWT library
     const token = req.get('Authorization').split(' ')[1];
     
-    jwt.verify(token, 'secret')
+    jwt.verify(token, JWT_SECRET)
       .then(info => {
+      // And assign the decoded user info to the user key of the req object.
         req.user = info;
         next();
       })
