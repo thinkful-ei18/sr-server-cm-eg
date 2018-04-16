@@ -5,12 +5,10 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-
 const userRouter = require('./users/userRouter');
-
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
-// const {dbConnect} = require('./db-knex');
+const jwtAuth = require('./auth/authenticate');
 
 const app = express();
 
@@ -26,7 +24,17 @@ app.use(
   })
 );
 
+
+
 app.use('/api', userRouter);
+
+
+app.use((err,req,res,next) => {
+  err.status = err.status || 500;
+  err.message = err.message || 'Internal Server Error';
+  res.json(err);
+});
+
 
 function runServer(port = PORT) {
   const server = app
