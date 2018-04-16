@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 
 const User = require('./userModel');
 
+
+// USER ENDPOINTS
 router.get('/users', (req, res) => {
   User
     .find()
@@ -14,5 +16,8 @@ router.get('/users', (req, res) => {
     })
     .catch(err => console.log(err));
 });
+
+// QUESTION ENDPOINTS
+
 
 module.exports = router; 
