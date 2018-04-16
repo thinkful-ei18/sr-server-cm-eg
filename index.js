@@ -5,6 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const userRouter = require('./users/userRouter');
+const authRouter = require('./auth/auth.route.js');
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
 const jwtAuth = require('./auth/authenticate');
@@ -34,7 +35,7 @@ app.use(express.json());
 
 //================================== Route Handlers ===================>
 app.use('/api', userRouter);
-
+app.use('/api', authRouter);
 
 
 //================================== Error Handler ====================>
