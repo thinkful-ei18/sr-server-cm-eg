@@ -25,8 +25,8 @@ router.post('/auth', (req,res,next) => {
       dbresults.validatePassword(loginInfo.password)
         .then(validationResult => {
           if (validationResult) {
-            let token = createToken(dbresults.username, dbresults.firstName, dbresults.lastName, dbresults.id);
-            res.json(token);
+            let authToken = createToken(dbresults.username, dbresults.firstName, dbresults.lastName, dbresults.id);
+            res.json({authToken});
           } else {
             const err = new Error();
             err.message = 'Credentials not Recognized.';

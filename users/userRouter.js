@@ -71,7 +71,5 @@ router.post('/users', (req,res,next) => {
 
 });
 
-// QUESTION ENDPOINTS
-
 
 module.exports = router; 
