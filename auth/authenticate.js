@@ -22,17 +22,15 @@ const authenticate = (req,res,next) => {
     // Now, we extract the token from the header and verify it with the JWT library
     const token = req.get('Authorization').split(' ')[1];
     
-    jwt.verify(token, JWT_SECRET)
+    jwt.verify(token, 'secret')
       .then(info => {
         req.user = info;
         next();
       })
       .catch(err => {
-        console.log('hit error block');
-        const error = new Error();
-        error.status = 403;
-        error.message = 'JWT Verification Failed. This token is not valid. Please try renewing';
-        next(error);
+        err.status = 403;
+        err.message = 'JWT Verification Failed. This token is not valid. Please try renewing';
+        return next(err);
       });
   } else {
     const err = new Error();
@@ -43,10 +41,4 @@ const authenticate = (req,res,next) => {
   }
 };
 
-
-app.get('/test', authenticate, (req,res) => {
-  res.send('You had authorization');
-});
-
-
-app.listen(8080);
+module.exports = authenticate;

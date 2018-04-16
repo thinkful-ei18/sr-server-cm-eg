@@ -3,9 +3,10 @@
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-
+require('dotenv').config();
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
+const jwtAuth = require('./auth/authenticate');
 
 const app = express();
 
@@ -20,6 +21,13 @@ app.use(
     origin: CLIENT_ORIGIN
   })
 );
+
+
+app.use((err,req,res,next) => {
+  err.status = err.status || 500;
+  err.message = err.message || 'Internal Server Error';
+  res.json(err);
+});
 
 function runServer(port = PORT) {
   const server = app
