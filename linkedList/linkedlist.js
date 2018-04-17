@@ -7,16 +7,49 @@ class LinkedList {
     this.head = null;
   }
 
+  static shiftFirst(list) {
+    let tempNode = list.head;
+    list.head = list.head.next;
+    return tempNode.value;
+  }
+
   insertFirst(item) {
     this.head = new _Node(item, this.head);
   }
 
-  insertLast(item) {
-    if (this.head === null) {
-      this.insertFirst(item);
+  // Insert item a third of the length of the list ahead of the beginning.
+  static insertForwardThird(item, list) {
+    if (!list.head) {
+      return false;
+    }
+    let lengthCounter = 0;
+    let currentNode = list.head;
+
+    while (currentNode.next !== null) {
+      currentNode = currentNode.next;
+      lengthCounter++;
+    }
+
+    let thirdIndex = Math.floor(lengthCounter/3);
+
+    currentNode = list.head;
+    lengthCounter = 0;
+    while(currentNode.next !== null && lengthCounter < (thirdIndex-1)) {
+      currentNode = currentNode.next;
+      lengthCounter++;
+      console.log(lengthCounter);
+    }
+
+    let tempNode = currentNode.next;
+    currentNode.next = new _Node(item, tempNode);
+  }
+
+  static insertLast(item,list) {
+    if (list.head === null) {
+      list.insertFirst(item);
     }
     else {
-      let tempNode = this.head;
+      let tempNode = list.head;
       while (tempNode.next !== null) {
         tempNode = tempNode.next;
       }
@@ -113,3 +146,16 @@ class LinkedList {
 
 
 module.exports = LinkedList;
+
+//Just some testing, don't mind me--------|
+// function main() {
+//   const foo = new LinkedList();
+//   foo.insertForwardThird('Wohooo!!');
+//   foo.insertFirst('1');
+//   foo.insertFirst('2');
+//   foo.insertFirst('3');
+//   foo.insertFirst('4');
+//   console.log(JSON.stringify(foo));
+// }
+
+// main();

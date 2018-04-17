@@ -6,6 +6,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const userRouter = require('./users/userRouter');
 const authRouter = require('./auth/auth.route.js');
+const questionsRouter = require('./questions/questions.route');
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
 const jwtAuth = require('./auth/authenticate');
@@ -36,7 +37,7 @@ app.use(express.json());
 //================================== Route Handlers ===================>
 app.use('/api', userRouter);
 app.use('/api', authRouter);
-
+app.use('/api', questionsRouter);
 
 //================================== Error Handler ====================>
 
@@ -44,7 +45,7 @@ app.use((err,req,res,next) => {
   err.status = err.status || 500;
   err.message = err.message || 'Internal Server Error';
   console.log(err);
-  res.json(err);
+  res.status(err.status).json(err);
 });
 
 

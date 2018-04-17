@@ -1,0 +1,17 @@
+[
+  {
+    "question":"What does O(n) mean?",
+    "answer":"Linear",
+    "score":"0" 
+  },
+  {
+    "question":"The type of list sorting which occurs by dividing the list in halves and merging them back together in order.",
+    "answer":"Merge Sort",
+    "score":"0"
+  },
+  {
+    "question":"What is the big O of a nested for loop?",
+    "answer":"Polynomial",
+    "score":"0"
+  }
+]
