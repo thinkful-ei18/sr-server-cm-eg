@@ -22,6 +22,9 @@ router.get('/questions', jwtAuth, (req,res,next) => {
     .then(user => {
       let questionToSend = user.questions.head.value;
       res.json({'question':questionToSend.question});
+    })
+    .catch(err => {
+      next(err);
     });
  
 });
