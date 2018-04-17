@@ -45,8 +45,8 @@
     "score":"0"
   },
   {
-    "question":"A _________ is a data structure the nature of which can be illustrated by imagining several plates on top of eachother.",
-    "answer":"Stack",
+    "question":"A ______ can only insert data on one end and remove data on the other.",
+    "answer":"Queue",
     "score":"0"
   }
 ]
