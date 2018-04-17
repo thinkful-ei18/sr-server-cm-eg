@@ -2,14 +2,14 @@
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const LinkedList = require('../linkedList/linkedlist');
+const QuestionList = require('../questions/question.linkedlist');
 
 const userSchema = mongoose.Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   firstName: { type: String, default: '' },
   lastName: { type: String, default: '' },
-  questions: [{ type: Object }]
+  questions: { type: Object, default: () => QuestionList}
 });
 
 userSchema.set('toObject', {
@@ -20,6 +20,7 @@ userSchema.set('toObject', {
     delete ret.__v;
   }
 });
+
 
 userSchema.methods.validatePassword = function (password) {
   return bcrypt.compare(password, this.password);

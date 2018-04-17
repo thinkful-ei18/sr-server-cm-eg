@@ -19,18 +19,18 @@ const authenticate = (req,res,next) => {
 
     // Now, we extract the token from the header and verify it with the JWT library
     const token = req.get('Authorization').split(' ')[1];
-    
-    jwt.verify(token, JWT_SECRET)
-      .then(info => {
-      // And assign the decoded user info to the user key of the req object.
-        req.user = info;
-        next();
-      })
-      .catch(err => {
+
+    jwt.verify(token, JWT_SECRET, (err,decoded) => {
+      if (err) {
         err.status = 403;
-        err.message = 'JWT Verification Failed. This token is not valid. Please try renewing';
+        err.message = 'JWT Verification Failed. This token is not valid. Please try renewing.';
         return next(err);
-      });
+      } else {
+        req.user = decoded;
+        next();
+      }
+    });
+
   } else {
     const err = new Error();
     err.status = 403;
