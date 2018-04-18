@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const userRouter = require('./users/userRouter');
 const authRouter = require('./auth/auth.route.js');
 const questionsRouter = require('./questions/questions.route');
+const statsRouter = require('./stats/stats.route');
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
 const jwtAuth = require('./auth/authenticate');
@@ -38,6 +39,7 @@ app.use(express.json());
 app.use('/api', userRouter);
 app.use('/api', authRouter);
 app.use('/api', questionsRouter);
+app.use('/api', statsRouter);
 
 //================================== Error Handler ====================>
 

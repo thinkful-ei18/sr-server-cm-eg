@@ -10,7 +10,8 @@ const userSchema = mongoose.Schema({
   password: { type: String, required: true }, 
   firstName: { type: String, default: '' },
   lastName: { type: String, default: '' },
-  questions: { type: Object, default: () => QuestionList}
+  questions: { type: Object, default: () => QuestionList},
+  sessionsCompleted: {type: Number, default: 0}
 });
 
 userSchema.set('toObject', {virtuals:true},{
@@ -25,7 +26,7 @@ userSchema.set('toObject', {virtuals:true},{
 userSchema.virtual('totalscore').get(function () {
   let currentNode = this.questions.head;
   let total = 0;
-  while (currentNode.next !== null) {
+  while (currentNode !== null) {
     total+= Number(currentNode.value.score);
     currentNode = currentNode.next;
   }
