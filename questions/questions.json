@@ -2,51 +2,51 @@
   {
     "question":"What does O(n) mean?",
     "answer":"Linear",
-    "score":"0" 
+    "score":0 
   },
   {
     "question":"The type of list sorting which occurs by dividing the list in halves and merging them back together in order.",
     "answer":"Merge Sort",
-    "score":"0"
+    "score":0
   },
   {
-    "question":"What is the big O of a nested for loop?",
+    "question":"What is the big O of a nested 'for' loop?",
     "answer":"Polynomial",
-    "score":"0"
+    "score":0
   },
   {
     "question":"A Binary Search Tree with leaf children (its bottom-most nodes) that are no more than one node apart in their distance from the root is called what? ",
     "answer":"Balanced",
-    "score":"0"
+    "score":0
   },
   {
     "question":"Arrays are _________ in memory. This is an incredible benefit for their usage, because it allows lookup time for any element in the array to remain O(1), constant time.",
     "answer":"Contiguous",
-    "score":"0"
+    "score":0
   },
   {
     "question":"A _________ is a data structure the nature of which can be illustrated by imagining several plates on top of eachother.",
     "answer":"Stack",
-    "score":"0"
+    "score":0
   },
   {
     "question":"True or False: The difference between Big O Polynomial Classification and Big O Exponential Classification is that Polynomial increases to the power of the number of nested loops, whereas exponential increases in increments of 2 powers with each nested Loop.",
     "answer":"False",
-    "score":"0"
+    "score":0
   },
   {
-    "question":"A _________ is a data structure the nature of which can be illustrated by imagining several plates on top of eachother.",
-    "answer":"Stack",
-    "score":"0"
+    "question":"A Hashmap uses a ________ to determine the index of an array at which an item must be stored. This is also used for extracting data out of the Hashmap",
+    "answer":"Function",
+    "score":0 
   }, 
   {
     "question":"The key player of a QuickSort is a(n) ______, by which the sorting algorithm flips all of the other members of the array to different sides of the list depending on whether they are less or greater.",
     "answer":"Pivot",
-    "score":"0"
+    "score":0
   },
   {
     "question":"A ______ can only insert data on one end and remove data on the other.",
     "answer":"Queue",
-    "score":"0"
+    "score":0
   }
 ]
