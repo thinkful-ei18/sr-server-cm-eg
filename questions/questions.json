@@ -30,7 +30,7 @@
     "score":"0"
   },
   {
-    "question":"True or False: The difference between Big O Polynomial Classification and Big O Exponential Classification is that Polynomial increases to the power of nested loops, whereas exponential increases in increments of 2 powers with each nested Loop.",
+    "question":"True or False: The difference between Big O Polynomial Classification and Big O Exponential Classification is that Polynomial increases to the power of the number of nested loops, whereas exponential increases in increments of 2 powers with each nested Loop.",
     "answer":"False",
     "score":"0"
   },

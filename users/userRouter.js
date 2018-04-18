@@ -15,7 +15,7 @@ router.get('/users', (req, res) => {
     .then(result => {
       res.json(result);
     })
-    .catch(err => console.log(err));
+    .catch(console.log);
 });
 
 
@@ -42,7 +42,7 @@ router.post('/users', (req,res,next) => {
 
       if (req.body[field].length < 8) {
         const err = new Error();
-        err.message = 'Password is not long enough. 8 characters minimum.'
+        err.message = 'Password is not long enough. 8 characters minimum.';
         err.status = 400;
         return next(err);
       }

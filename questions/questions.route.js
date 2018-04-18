@@ -36,8 +36,12 @@ router.post('/questions', jwtAuth, (req,res,next) => {
   User.findOne({username})
     .then(user => {
       if (user.questions.head.value.answer.toLowerCase() !== userAnswer.toLowerCase()) {
-        res.json({'result': `Incorrect. The Correct answer is ${user.questions.head.value.answer}`});
+        res.json({'result': {
+          'text':`Incorrect. The Correct answer is ${user.questions.head.value.answer}`,
+          'boolean':false
+        }});
         let question = LinkedList.shiftFirst(user.questions);
+        question.score = question.score - 2 >=0 ? question.score-2 : 0;
         LinkedList.insertForwardThird(question, user.questions);
 
         User.updateOne({username}, {$set: {questions:user.questions}})
@@ -45,8 +49,13 @@ router.post('/questions', jwtAuth, (req,res,next) => {
             console.log(`list updated for ${req.user.username}`);
           });
       } else {
-        res.json({'result':'Correct!'});
+        res.json({'result': {
+          'text':'Correct!',
+          'boolean':true
+        }
+        });
         let question = LinkedList.shiftFirst(user.questions);
+        question.score++;
         LinkedList.insertLast(question,user.questions);
 
         User.updateOne({username}, {$set: {questions:user.questions}})

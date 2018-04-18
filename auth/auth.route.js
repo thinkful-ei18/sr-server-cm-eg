@@ -22,6 +22,12 @@ router.post('/auth', (req,res,next) => {
 
   User.findOne({'username': loginInfo.username})
     .then(dbresults => {
+      if (!dbresults) {
+        const err = new Error();
+        err.message = 'User could not be found';
+        err.status = 400;
+        return next(err);
+      }
       dbresults.validatePassword(loginInfo.password)
         .then(validationResult => {
           if (validationResult) {
