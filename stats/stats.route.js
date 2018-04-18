@@ -26,7 +26,8 @@ router.get('/stats', jwtAuth, (req,res,next) => {
       }
       const statObj = {
         overallScore: user.totalscore,
-        questionStats
+        questionStats,
+        sessionsCompleted:user.sessionsCompleted
       };
 
       res.json(statObj);

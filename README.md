@@ -72,6 +72,7 @@
 ```
 {
     "overallScore": 14,
+    "sessionsCompleted": 2,
     "questionStats": [
         {
             "question": "What is the big O of a nested for loop?",
