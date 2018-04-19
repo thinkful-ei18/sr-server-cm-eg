@@ -14,6 +14,12 @@ router.get('/stats', jwtAuth, (req,res,next) => {
 
   User.findOne({username})
     .then(user => {
+      if (user === null) {
+        const err = new Error();
+        err.message= 'User not found';
+        err.status = 400;
+        return next(err);
+      }
       let questionStats = [];
 
       let currentNode = user.questions.head;

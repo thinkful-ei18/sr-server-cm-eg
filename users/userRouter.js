@@ -12,6 +12,7 @@ const User = require('./userModel');
 router.get('/users', (req, res) => {
   User
     .find()
+    .limit(5)
     .then(result => {
       let leaderBoard = result.map((user) => {
         return {

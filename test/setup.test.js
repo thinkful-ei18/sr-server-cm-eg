@@ -5,6 +5,7 @@ const chaiHttp = require('chai-http');
 
 const {TEST_DATABASE_URL} = require('../config');
 const {dbConnect, dbDisconnect} = require('../db-mongoose');
+const {runServer} = require('../index');
 // const {dbConnect, dbDisconnect} = require('../db-knex');
 
 // Set NODE_ENV to `test` to disable http layer logs
@@ -18,6 +19,7 @@ const expect = chai.expect;
 chai.use(chaiHttp);
 
 before(function() {
+  runServer();
   return dbConnect(TEST_DATABASE_URL);
 });
 
