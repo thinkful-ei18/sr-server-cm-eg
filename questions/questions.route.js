@@ -41,9 +41,7 @@ router.post('/questions', jwtAuth, (req,res,next) => {
           'boolean':false
         }});
         let question = LinkedList.shiftFirst(user.questions);
-        console.log('previous score', question.score);
         question.score = question.score - 2 >=0 ? question.score-2 : 0;
-        console.log('new score', question.score);
         LinkedList.insertForwardThird(question, user.questions);
 
         User.updateOne({username}, {$set: {questions:user.questions}})
