@@ -13,7 +13,15 @@ router.get('/users', (req, res) => {
   User
     .find()
     .then(result => {
-      res.json(result);
+      let leaderBoard = result.map((user) => {
+        return {
+          username: user.username,
+          score:user.totalscore,
+          id:user._id,
+          completedSessions:user.sessionsCompleted
+        };
+      }).sort((a,b) => b.score - a.score);
+      res.json(leaderBoard);
     })
     .catch(console.log);
 });
