@@ -72,7 +72,7 @@ router.post('/users', (req,res,next) => {
   // Send user to Database
   User.create(user)
     .then(user => {
-      res.json(user);
+      res.status(201).json(user);
     })
     .catch(inconvenience => {
       return next(inconvenience);

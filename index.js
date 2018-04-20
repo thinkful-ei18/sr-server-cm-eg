@@ -12,6 +12,7 @@ const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
 const jwtAuth = require('./auth/authenticate');
 const app = express();
+const {JWT_SECRET} = require('./config');
 
 
 //================================== Logger Middleware ====================>
